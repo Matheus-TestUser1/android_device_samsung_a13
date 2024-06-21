@@ -1,5 +1,6 @@
 # TWRP device tree for Samsung Galaxy A13 (SM-A135M)
-#device tree is imcomplete warning !!!
+# device tree is imcomplete warning !!!
+
 ## Kernel Source 
 Available at [here](https://github.com/VThang51/android_kernel_samsung_a13xx)
 
@@ -25,7 +26,7 @@ repo sync
 ```
 4. Clone the device tree
 ```bash
-git clone -b twrp-12.1 https://github.com/VThang51/android_device_samsung_a13.git device/samsung/a13
+git clone -b twrp-12.1 https://github.com/Matheus-TestUser1/android_device_samsung_a13.git device/samsung/a13
 ```
 5. Build it
 ```bash
