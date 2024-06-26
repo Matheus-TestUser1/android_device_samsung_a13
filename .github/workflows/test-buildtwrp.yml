@@ -1,0 +1,65 @@
+name: Build TWRP
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git-core gnupg flex bison build-essential zip curl zlib1g-dev gcc-multilib g++-multilib \
+            libc6-dev-i386 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev libgl1-mesa-dev libxml2-utils xsltproc unzip \
+            bc liblz4-tool libncurses5 python python3 python-is-python3 python3-pip
+
+      - name: Set up Repo tool
+        run: |
+          mkdir -p ~/bin
+          curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+          chmod a+x ~/bin/repo
+          echo 'export PATH=~/bin:$PATH' >> ~/.bashrc
+          source ~/.bashrc
+
+      - name: Initialize and Sync TWRP Source
+        run: |
+          mkdir -p ~/twrp
+          cd ~/twrp
+          repo init -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1
+          repo sync
+
+      - name: Clone Device Tree
+        run: |
+          cd ~/twrp
+          git clone https://github.com/Matheus-TestUser1/android_device_samsung_a135m.git device/samsung/a13
+
+      - name: Build TWRP
+        env:
+          ALLOW_MISSING_DEPENDENCIES: true
+          LC_ALL: C
+        run: |
+          cd ~/twrp
+          source build/envsetup.sh
+          lunch twrp_a13-eng
+          mka recoveryimage
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: twrp-recovery
+          path: ~/twrp/out/target/product/a13/recovery.img
