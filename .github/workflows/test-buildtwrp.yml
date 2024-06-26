@@ -31,11 +31,11 @@ jobs:
            
       - name: Install Repo
         run: |
-          mkdir -p ~/bin
-          curl -o ~/bin/repo https://storage.googleapis.com/git-repo-downloads/repo
-          chmod a+x ~/bin/repo
-          echo 'export PATH=~/bin:$PATH' >> ~/.bashrc
-          source ~/.bashrc
+           mkdir -p /home/runner/bin
+           curl -o /home/runner/bin/repo https://storage.googleapis.com/git-repo-downloads/repo
+           chmod +x /home/runner/bin/repo
+           echo 'export PATH="/home/runner/bin:$PATH"' >> /home/runner/.bashrc
+           source /home/runner/.bashrc
           
       - name: Initialize and Sync TWRP Source
         run: |
