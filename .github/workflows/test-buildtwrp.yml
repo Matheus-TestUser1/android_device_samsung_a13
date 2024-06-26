@@ -40,13 +40,21 @@ jobs:
             repo --version
             which repo  
   
+          - name: Cleanup
+           uses: rokibhasansagar/slimhub_actions@main
+           
+           - name: Set Swap Space
+             uses: pierotofy/set-swap-space@master
+      
       - name: Initialize and Sync TWRP Source
         run: |
           mkdir -p ~/twrp
           cd ~/twrp
           repo init -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1
           repo sync
-
+          continue-on-error: true
+          
+        
       - name: Clone Device Tree
         run: |
           cd ~/twrp
