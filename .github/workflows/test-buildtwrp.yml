@@ -3,10 +3,10 @@ name: Build TWRP
 on:
   push:
     branches:
-      - main
+      - twrp-12.1
   pull_request:
     branches:
-      - main
+      - twrp-12.1
   workflow_dispatch:
 
 jobs:
