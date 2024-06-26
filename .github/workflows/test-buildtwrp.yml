@@ -31,14 +31,14 @@ jobs:
            
       - name: Install Repo
         run: |
-          mkdir -p /home/runner/bin
-          curl -o /home/runner/bin/repo https://storage.googleapis.com/git-repo-downloads/repo
-          chmod +x /home/runner/bin/repo
-          echo 'export PATH="/home/runner/bin:$PATH"' >> /home/runner/.bashrc
-          source /home/runner/.bashrc
-          sudo cp /home/runner/bin/repo /usr/bin/repo
-          
-          shell: /usr/bin/bash -e {0}
+          mkdir -p $HOME/bin
+          curl -o $HOME/bin/repo https://storage.googleapis.com/git-repo-downloads/repo
+           chmod +x $HOME/bin/repo
+            echo 'export PATH="$HOME/bin:$PATH"' >> $HOME/.bashrc
+            source $HOME/.bashrc
+            sudo cp $HOME/bin/repo /usr/bin/repo
+            repo --version
+            which repo  
   
       - name: Initialize and Sync TWRP Source
         run: |
