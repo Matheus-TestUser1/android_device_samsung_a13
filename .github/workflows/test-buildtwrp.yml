@@ -36,7 +36,7 @@ jobs:
            chmod +x /home/runner/bin/repo
            echo 'export PATH="/home/runner/bin:$PATH"' >> /home/runner/.bashrc
            source /home/runner/.bashrc
-          
+           sudo cp /home/runner/twrp/.repo/repo/repo /usr/bin/repo
       - name: Initialize and Sync TWRP Source
         run: |
           mkdir -p ~/twrp
