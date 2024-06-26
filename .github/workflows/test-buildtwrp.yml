@@ -51,12 +51,13 @@ jobs:
           mkdir -p ~/twrp
           cd ~/twrp
           repo init -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1
+          mkdir -p .repo/local_manifests
+          echo '<?xml version="1.0" encoding="UTF-8"?>
+          <manifest>
+              <remote name="github" fetch="https://github.com/" />
+              <project name="Matheus-TestUser1/android_device_samsung_a13" path="device/samsung/a13" remote="github" />
+          </manifest>' > .repo/local_manifests/roomservice.xml
           repo sync
-
-      - name: Clone Device Tree
-        run: |
-          cd ~/twrp
-          git clone https://github.com/Matheus-TestUser1/android_device_samsung_a135m.git device/samsung/a13
 
       - name: Build TWRP
         env:
