@@ -27,16 +27,19 @@ jobs:
           sudo apt-get update
            sudo apt-get install -y git-core gnupg flex bison build-essential zip curl zlib1g-dev gcc-multilib g++-multilib \
            libc6-dev-i386 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev libgl1-mesa-dev libxml2-utils xsltproc unzip \
-           bc liblz4-tool libncurses5 python3 python-is-python3 python3-pip openjdk-11-jdk repo
+           bc liblz4-tool libncurses5 python3 python-is-python3 python3-pip openjdk-11-jdk 
            
       - name: Install Repo
         run: |
-           mkdir -p /home/runner/bin
-           curl -o /home/runner/bin/repo https://storage.googleapis.com/git-repo-downloads/repo
-           chmod +x /home/runner/bin/repo
-           echo 'export PATH="/home/runner/bin:$PATH"' >> /home/runner/.bashrc
-           source /home/runner/.bashrc
-           sudo cp /home/runner/bin/.repo/repo/repo /usr/bin/repo
+          mkdir -p /home/runner/bin
+          curl -o /home/runner/bin/repo https://storage.googleapis.com/git-repo-downloads/repo
+          chmod +x /home/runner/bin/repo
+          echo 'export PATH="/home/runner/bin:$PATH"' >> /home/runner/.bashrc
+          source /home/runner/.bashrc
+          sudo cp /home/runner/bin/repo /usr/bin/repo
+          
+          shell: /usr/bin/bash -e {0}
+  
       - name: Initialize and Sync TWRP Source
         run: |
           mkdir -p ~/twrp
