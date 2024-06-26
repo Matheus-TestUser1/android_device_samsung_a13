@@ -17,17 +17,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up JDK 11
-        uses: actions/setup-java@v2
-        with:
-          java-version: 11
-
       - name: Install Dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y git-core gnupg flex bison build-essential zip curl zlib1g-dev gcc-multilib g++-multilib \
             libc6-dev-i386 lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev libgl1-mesa-dev libxml2-utils xsltproc unzip \
-            bc liblz4-tool libncurses5 python python3 python-is-python3 python3-pip
+            bc liblz4-tool libncurses5 python python3 python-is-python3 python3-pip openjdk-11-jdk
 
       - name: Set up Repo tool
         run: |
