@@ -1,6 +1,6 @@
 # TWRP device tree for Samsung Galaxy A13 (SM-A135M)
 # device tree is imcomplete warning !!!
-
+[![Build TWRP](https://github.com/Matheus-TestUser1/android_device_samsung_a135m/actions/workflows/test-buildtwrp.yml/badge.svg)](https://github.com/Matheus-TestUser1/android_device_samsung_a135m/actions/workflows/test-buildtwrp.yml)
 ## Kernel Source 
 Available at [here](https://github.com/VThang51/android_kernel_samsung_a13xx)
 
