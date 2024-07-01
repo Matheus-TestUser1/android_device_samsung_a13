@@ -46,7 +46,7 @@ TARGET_COPY_OUT_VENDOR := vendor
 BOARD_ROOT_EXTRA_FOLDERS := cache carrier data_mirror efs keyrefuge linkerconfig metadata omr optics prism spu
 BOARD_SUPER_PARTITION_SIZE := 6308233216
 BOARD_SUPER_PARTITION_GROUPS := samsung_dynamic_partitions
-BOARD_SAMSUNG_DYNAMIC_PARTITIONS_SIZE := 5026840576
+BOARD_SAMSUNG_DYNAMIC_PARTITIONS_SIZE := 6304038912
 BOARD_SAMSUNG_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor product odm
 
 # TWRP specific build flags
