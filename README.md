@@ -1,39 +1,42 @@
+
 # TWRP device tree for Samsung Galaxy A13 (SM-A135M)
-# device tree is imcomplete warning !!!
-[![Build TWRP](https://github.com/Matheus-TestUser1/android_device_samsung_a135m/actions/workflows/test-buildtwrp.yml/badge.svg)](https://github.com/Matheus-TestUser1/android_device_samsung_a135m/actions/workflows/test-buildtwrp.yml)
-## Kernel Source 
-Available at [here](https://github.com/VThang51/android_kernel_samsung_a13xx)
+
+## Disclaimer
+**Warning: Flashing custom recoveries can potentially brick your device. Proceed at your own risk. I am not responsible for any damage or data loss caused to your device.**
+
+## Kernel Source
+Available [here](https://github.com/VThang51/android_kernel_samsung_a13xx).
 
 ## Platform Source
-Available at [here](https://github.com/VThang51/android_platform_samsung_a13)
+Available [here](https://github.com/VThang51/android_platform_samsung_a13).
 
 ## How To Build
-1. Create a working directory at `~`
+1. Create a working directory at `~`:
 ```bash
 mkdir ~/TWRP && cd ~/TWRP
 ```
-2. Initialize your local repository using AOSP tree to build TWRP
+2. Initialize your local repository using AOSP tree to build TWRP:
 ```bash
 repo init -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1
 ```
-Or a more space-saving solution
+Or a more space-saving solution:
 ```bash
 repo init --depth=1 -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1
 ```
-3. Sync up
+3. Sync up:
 ```bash
 repo sync
 ```
-4. Clone the device tree
+4. Clone the device tree:
 ```bash
 git clone -b twrp-12.1 https://github.com/Matheus-TestUser1/android_device_samsung_a13.git device/samsung/a13
 ```
-5. Build it
+5. Build it:
 ```bash
 cd ~/TWRP && export ALLOW_MISSING_DEPENDENCIES=true && . build/envsetup.sh && lunch twrp_a13-eng && mka recoveryimage
 ```
 
-## What was active in this TWRP device tree?
+## What is active in this TWRP device tree?
 - `[A]` Active
 - `[P]` Partially Active
 - `[ ]` Not tested / Not working
@@ -64,7 +67,7 @@ Minor checks
 - [A] Poweroff
 - [P] Battery level
 - [A] Temperature
-- [A] Rncrypted backups
+- [A] Encrypted backups
 - [A] Input devices via USB (USB-OTG)
 - [A] Keyboard, mouse and disks (not supported by the device)
 - [P] USB mass storage export
@@ -73,3 +76,6 @@ Minor checks
 - [A] Screenshot
 - [ ] Partition SD card
 ```
+
+## Additional Resources
+For a detailed guide on building TWRP, please refer to [this guide](https://xdaforums.com/t/guide-to-twrp-building.4515895/).
