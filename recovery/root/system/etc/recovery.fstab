@@ -1,29 +1,29 @@
-# Copyright (c) 2011, Code Aurora Forum. Todos os direitos reservados.
+# Copyright (c) 2011, Code Aurora Forum. All rights reserved.
 #
-# A redistribuição e o uso em formas de código-fonte e binária, com ou sem
-# modificação, são permitidos desde que as seguintes condições sejam
-# atendidas:
-#     * Redistribuições do código-fonte devem reter o aviso de copyright acima,
-#       esta lista de condições e a seguinte isenção de responsabilidade.
-#     * Redistribuições em formato binário devem reproduzir o aviso de
-#       copyright acima, esta lista de condições e a seguinte isenção de
-#       responsabilidade na documentação e/ou outros materiais fornecidos com
-#       a distribuição.
-#     * Nem o nome do Code Aurora Forum, Inc. nem os nomes dos seus
-#       contribuidores podem ser usados para endossar ou promover produtos
-#       derivados deste software sem permissão prévia específica por escrito.
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above
+#       copyright notice, this list of conditions and the following
+#       disclaimer in the documentation and/or other materials provided
+#       with the distribution.
+#     * Neither the name of Code Aurora Forum, Inc. nor the names of its
+#       contributors may be used to endorse or promote products derived
+#       from this software without specific prior written permission.
 #
-# ESTE SOFTWARE É FORNECIDO "COMO ESTÁ" E QUAISQUER GARANTIAS EXPRESSAS OU
-# IMPLÍCITAS, INCLUINDO, MAS NÃO LIMITADAS ÀS GARANTIAS IMPLÍCITAS DE
-# COMERCIALIZAÇÃO, ADEQUAÇÃO PARA UM PROPÓSITO ESPECÍFICO E NÃO-VIOLAÇÃO
-# SÃO RENUNCIADAS. EM NENHUM CASO O PROPRIETÁRIO DO COPYRIGHT OU OS
-# CONTRIBUIDORES SERÃO RESPONSÁVEIS POR QUAISQUER DANOS DIRETOS, INDIRETOS,
-# INCIDENTAIS, ESPECIAIS, EXEMPLARES OU CONSEQUENCIAIS (INCLUINDO, MAS NÃO
-# LIMITADOS A, AQUISIÇÃO DE BENS OU SERVIÇOS SUBSTITUTOS; PERDA DE USO,
-# DADOS OU LUCROS; OU INTERRUPÇÃO DE NEGÓCIOS) POR QUALQUER TEORIA DE
-# RESPONSABILIDADE, SEJA EM CONTRATO, RESPONSABILIDADE ESTRITA OU DELITO
-# (INCLUINDO NEGLIGÊNCIA OU OUTRO) QUE SURGIR DE QUALQUER MANEIRA DO USO
-# DESTE SOFTWARE, MESMO SE AVISADO DA POSSIBILIDADE DE TAIS DANOS.
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
+# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+# BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+# OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+# IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #<src>                                    <mnt_point>    <type>    <mnt_flags and options>    <fs_mgr_flags>
 system    /system       f2fs    ro    avb=vbmeta,logical,first_stage_mount
