@@ -1,3 +1,0 @@
-runtime-module-sdk {
-    enabled: false,
-}
