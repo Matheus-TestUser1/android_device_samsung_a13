@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-DEVICE_PATH := device/samsung/a13
+DEVICE_PATH := device/samsung/$(DEVICE_CODENAME)
 
 
 # Inherit from common AOSP config
