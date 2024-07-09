@@ -4,3 +4,8 @@ sys.usb.controller=13600000.dwc3
 ro.boot.usbcontroller=13600000.dwc3
 ro.boot.dynamic_partitions=true
 ro.boot.boot_devices=12100000.dwmmc0
+persist.sys.usb.config=mtp
+
+# AVB
+#ro.boot.avb_version=1.2
+#ro.boot.vbmeta.avb_version=1.2
