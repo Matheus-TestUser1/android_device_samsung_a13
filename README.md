@@ -76,6 +76,8 @@ Minor checks
 - [A] Screenshot
 - [ ] Partition SD card
 ```
+## Credits 
+[device tree a137f](https://github.com/badra639/twrp_samsung_a13ve)
 
 ## Additional Resources
 For a detailed guide on building TWRP, please refer to [this guide](https://xdaforums.com/t/guide-to-twrp-building.4515895/).
