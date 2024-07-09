@@ -33,7 +33,7 @@ PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,device/samsung/a13/recover
 
 # Device identifier
 PRODUCT_RELEASE_NAME := a13
-PRODUCT_DEVICE := a13ub
+PRODUCT_DEVICE := a13
 PRODUCT_NAME := twrp_a13
 PRODUCT_BRAND := Samsung
 PRODUCT_MODEL := SM-A135M
