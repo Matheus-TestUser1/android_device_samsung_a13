@@ -12,11 +12,18 @@ TARGET_USES_UEFI := true
 
 # Architecture
 TARGET_ARCH := arm
-TARGET_ARCH_VARIANT := armv7-a-neon
-TARGET_CPU_ABI := armeabi-v7a
-TARGET_CPU_ABI2 := armeabi
+TARGET_ARCH_VARIANT := armeabi-v7a
+TARGET_CPU_ABI := armeabi
+TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := cortex-a55
 TARGET_CPU_VARIANT_RUNTIME := cortex-a55
+
+TARGET_2ND_ARCH := arm
+TARGET_2ND_ARCH_VARIANT := armv8-a
+TARGET_2ND_CPU_ABI := armeabi-v7a
+TARGET_2ND_CPU_ABI2 := armeabi
+TARGET_2ND_CPU_VARIANT := cortex-a55
+TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a55
 
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
@@ -26,6 +33,10 @@ BUILD_BROKEN_DUP_RULES := true
 
 # Display
 TARGET_SCREEN_DENSITY := 450
+
+# PRODUCT_COPY_FILES directives.
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
+DISABLE_ARTIFACT_PATH_REQUIREMENTS := true
 
 # APEX
 DEXPREOPT_GENERATE_APEX_IMAGE := true
@@ -118,9 +129,9 @@ BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
 VENDOR_SECURITY_PATCH := 2021-08-01
 
 # System as root
-#BOARD_ROOT_EXTRA_FOLDERS := cache carrier data_mirror efs keyrefuge linkerconfig metadata omr optics prism spu
-#BOARD_SUPPRESS_SECURE_ERASE := true
-#TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
+BOARD_ROOT_EXTRA_FOLDERS := cache carrier data_mirror efs keyrefuge linkerconfig metadata omr optics prism spu
+BOARD_SUPPRESS_SECURE_ERASE := true
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # Boot
 BOARD_BOOT_HEADER_VERSION := 2
