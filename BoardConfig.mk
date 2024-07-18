@@ -25,6 +25,10 @@ TARGET_2ND_CPU_ABI2 :=
 TARGET_2ND_CPU_VARIANT := cortex-a55
 TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a55
 
+ENABLE_CPUSETS := true
+
+ENABLE_SCHEDBOOST := true
+
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
 
