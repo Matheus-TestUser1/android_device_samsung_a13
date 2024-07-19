@@ -1,5 +1,5 @@
 cc_prebuilt_binary {
-    name: "Image.gz",
-    srcs: ["kernel/Image.gz"],
+    name: "kernel",
+    srcs: ["prebuilt/Image.gz"],
     installable: true,
 }
