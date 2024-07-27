@@ -9,7 +9,7 @@ TARGET_BOOTLOADER_BOARD_NAME := exynos850
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 TARGET_USES_UEFI := true
-
+TARGET_BUILD_64BIT := false
 # Architecture
 ifeq ($(TARGET_BUILD_64BIT), true)
 # Build 64-bit TWRP
