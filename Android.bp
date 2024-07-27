@@ -10,6 +10,6 @@ soong_namespace {
 
 cc_prebuilt_binary {
     name: "kernel",
-    srcs: ["prebuilt/zImage.gz"],
+    srcs: ["prebuilt/Image.gz"],
     installable: true,
 }
