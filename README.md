@@ -78,6 +78,7 @@ Minor checks
 ```
 ## Credits 
 [device tree a137f](https://github.com/badra639/twrp_samsung_a13ve)
+[device tree a01 core](https://github.com/almondnguyen/twrp_device_samsung_a01core/blob/twrp-11/BoardConfig.mk)
 
 ## Additional Resources
 For a detailed guide on building TWRP, please refer to [this guide](https://xdaforums.com/t/guide-to-twrp-building.4515895/).
