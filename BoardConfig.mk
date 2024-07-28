@@ -30,11 +30,11 @@ ifeq ($(TARGET_BUILD_64BIT), true)
 else
     # Build 32-bit TWRP
     TARGET_ARCH := arm
-    TARGET_ARCH_VARIANT := armv8-a
+    TARGET_ARCH_VARIANT := armv8.2-a
     TARGET_CPU_ABI := armeabi-v7a
     TARGET_CPU_ABI2 := armeabi
-    TARGET_CPU_VARIANT := cortex-a53
-    TARGET_CPU_VARIANT_RUNTIME := cortex-a53
+    TARGET_CPU_VARIANT := cortex-a55
+    TARGET_CPU_VARIANT_RUNTIME := cortex-a55
 endif
 TARGET_CPU_SMP := true
 
