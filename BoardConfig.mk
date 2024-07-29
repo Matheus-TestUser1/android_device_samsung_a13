@@ -30,16 +30,19 @@ ifeq ($(TARGET_BUILD_64BIT), true)
 else
     # Build 32-bit TWRP
     TARGET_ARCH := arm
-    TARGET_ARCH_VARIANT := armv8.2-a
+    TARGET_ARCH_VARIANT := armv8-a
     TARGET_CPU_ABI := armeabi-v7a
     TARGET_CPU_ABI2 := armeabi
     TARGET_CPU_VARIANT := cortex-a55
     TARGET_CPU_VARIANT_RUNTIME := cortex-a55
+
+    # Adicione as flags de compilação para 32-bit
+    TARGET_CFLAGS += -march=armv8-a
+    TARGET_LDFLAGS += -march=armv8-a
 endif
 TARGET_CPU_SMP := true
 
 ENABLE_CPUSETS := true
-
 ENABLE_SCHEDBOOST := true
 
 # For building with minimal manifest
