@@ -1,4 +1,3 @@
-//
 // Copyright (C) 2024 The Android Open Source Project
 // Copyright (C) 2024 SebaUbuntu's TWRP device tree generator
 //
@@ -11,5 +10,11 @@ soong_namespace {
 cc_prebuilt_binary {
     name: "kernel",
     srcs: ["prebuilt/zImage.gz"],
-    installable: false,
+    installable: false, // Se não precisar que o kernel seja instalado diretamente
+}
+
+cc_prebuilt_binary {
+    name: "ramdisk",
+    srcs: ["prebuilt/ramdisk.img"],
+    installable: false, // Se não precisar que o ramdisk seja instalado diretamente
 }
