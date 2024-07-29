@@ -13,8 +13,3 @@ cc_prebuilt_binary {
     installable: false, // Se não precisar que o kernel seja instalado diretamente
 }
 
-cc_prebuilt_binary {
-    name: "ramdisk",
-    srcs: ["prebuilt/ramdisk.img"],
-    installable: false, // Se não precisar que o ramdisk seja instalado diretamente
-}
