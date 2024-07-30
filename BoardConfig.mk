@@ -35,10 +35,6 @@ else
     TARGET_CPU_ABI2 := armeabi
     TARGET_CPU_VARIANT := cortex-a53
     TARGET_CPU_VARIANT_RUNTIME := cortex-a53
-
-    # Adicione as flags de compilação para 32-bit
-    TARGET_CFLAGS += -march=armv8-a
-    TARGET_LDFLAGS += -march=armv8-a
 endif
 TARGET_CPU_SMP := true
 
