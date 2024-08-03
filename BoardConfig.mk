@@ -9,20 +9,33 @@ TARGET_BOOTLOADER_BOARD_NAME := exynos850
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 TARGET_USES_UEFI := true
+# function choose 64 bit or 32 bit.
+TARGET_BUILD_64BIT := false
 
-# Arquitetura do dispositivo
-TARGET_ARCH := arm
-TARGET_ARCH_VARIANT := armv8-a
-TARGET_CPU_ABI := armeabi-v7a
-TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_VARIANT := cortex-a53
+ifeq ($(TARGET_BUILD_64BIT), true)
+    # Build 64-bit TWRP
+    TARGET_ARCH := arm64
+    TARGET_ARCH_VARIANT := armv8-a
+    TARGET_CPU_ABI := arm64-v8a
+    TARGET_CPU_ABI2 :=
+    TARGET_CPU_VARIANT := cortex-a55
+    TARGET_CPU_VARIANT_RUNTIME := cortex-a55
 
-TARGET_2ND_ARCH := arm64
-TARGET_2ND_ARCH_VARIANT := armv8-a
-TARGET_2ND_CPU_ABI := arm64-v8a
-TARGET_2ND_CPU_ABI2 :=
-TARGET_2ND_CPU_VARIANT := cortex-a53
-
+    TARGET_2ND_ARCH := arm
+    TARGET_2ND_ARCH_VARIANT := armv8-a
+    TARGET_2ND_CPU_ABI := armeabi-v7a
+    TARGET_2ND_CPU_ABI2 := armeabi
+    TARGET_2ND_CPU_VARIANT := cortex-a55
+    TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a55
+else
+    # Build 32-bit TWRP
+    TARGET_ARCH := arm
+    TARGET_ARCH_VARIANT := armv8-a
+    TARGET_CPU_ABI := armeabi-v7a
+    TARGET_CPU_ABI2 := armeabi
+    TARGET_CPU_VARIANT := cortex-a53
+    TARGET_CPU_VARIANT_RUNTIME := cortex-a53
+endif
 TARGET_CPU_SMP := true
 
 ENABLE_CPUSETS := true
@@ -100,11 +113,11 @@ TWRP_INCLUDE_LOGCAT := true
 TW_INCLUDE_FB2PNG := true
 TW_USE_RESTORE_STOCK_RECOVERY := true
 TW_USE_NEW_MINADBD := true
-TW_USE_RECOVERY_SDCARD := true
+TW_USE_RECOVERY_SDCARD := false
 TWRP_EVENT_LOGGING := true
 
 # Kernel
-TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_ARCH := arm
 TARGET_FORCE_PREBUILT_KERNEL := true
 ifeq ($(TARGET_FORCE_PREBUILT_KERNEL),true)
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/zImage.gz
