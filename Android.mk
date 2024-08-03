@@ -16,16 +16,6 @@ ifneq ($(filter a13,$(TARGET_DEVICE)),)
 
 LOCAL_PATH := $(call my-dir)
 
-# Include multidisabler script
-include $(CLEAR_VARS)
-LOCAL_MODULE := multidisabler
-LOCAL_SRC_FILES := prebuilt/multidisabler
-LOCAL_MODULE_CLASS := EXECUTABLES
-LOCAL_MODULE_PATH := $(TARGET_ROOT_OUT)/sbin
-LOCAL_MODULE_STEM := multidisabler
-LOCAL_POST_INSTALL_CMD := chmod 0755 $(LOCAL_MODULE_PATH)/$(LOCAL_MODULE_STEM)
-include $(BUILD_PREBUILT)
-
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
 endif
