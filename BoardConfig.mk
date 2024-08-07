@@ -29,12 +29,18 @@ ifeq ($(TARGET_BUILD_64BIT), true)
     TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a55
 else
     # Build 32-bit TWRP
-    TARGET_ARCH := arm
-    TARGET_ARCH_VARIANT := armv8-a
-    TARGET_CPU_ABI := armeabi-v7a
-    TARGET_CPU_ABI2 := armeabi
-    TARGET_CPU_VARIANT := cortex-a53
-    TARGET_CPU_VARIANT_RUNTIME := cortex-a53
+    # Target Architecture
+TARGET_ARCH := arm
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
+TARGET_CPU_VARIANT := cortex-a55
+TARGET_CPU_VARIANT_RUNTIME := cortex-a55
+
+# Second Architecture (for binder64)
+TARGET_2ND_ARCH := arm64
+TARGET_2ND_ARCH_VARIANT := armv8-a
+TARGET_2ND_CPU_ABI := arm64-v8a
 endif
 TARGET_CPU_SMP := true
 
@@ -117,7 +123,7 @@ TW_USE_RECOVERY_SDCARD := false
 TWRP_EVENT_LOGGING := true
 
 # Kernel
-TARGET_KERNEL_ARCH := arm
+TARGET_KERNEL_ARCH := arm64
 TARGET_FORCE_PREBUILT_KERNEL := true
 
 ifeq ($(TARGET_FORCE_PREBUILT_KERNEL), true)
