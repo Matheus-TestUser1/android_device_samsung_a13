@@ -14,7 +14,7 @@ TARGET_BUILD_64BIT := false
 
 ifeq ($(TARGET_BUILD_64BIT), true)
     # Build 64-bit TWRP
-    TARGET_ARCH := arm64
+    TARGET_ARCH := arm64 
     TARGET_ARCH_VARIANT := armv8-a
     TARGET_CPU_ABI := arm64-v8a
     TARGET_CPU_ABI2 :=
