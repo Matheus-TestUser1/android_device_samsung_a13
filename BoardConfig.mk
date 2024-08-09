@@ -103,13 +103,13 @@ TARGET_KERNEL_ARCH := arm64
 TARGET_FORCE_PREBUILT_KERNEL := true
 
 ifeq ($(TARGET_FORCE_PREBUILT_KERNEL), true)
-    TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/zImage.gz
+    TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image
     TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
     BOARD_INCLUDE_RECOVERY_DTBO := false
     BOARD_INCLUDE_DTB_IN_BOOTIMG := true
     BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
     BOARD_KERNEL_SEPARATED_DTBO := true
-    BOARD_KERNEL_IMAGE_NAME := zImage.gz
+    BOARD_KERNEL_IMAGE_NAME := Image
 endif
 
 # Hack: prevent anti rollback
