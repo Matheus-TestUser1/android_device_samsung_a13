@@ -98,9 +98,8 @@ TARGET_FORCE_PREBUILT_KERNEL := true
 
 # Caminhos para arquivos preexistentes
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image          
-BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
-BOARD_PREBUILT_DTBIMAGE := $(DEVICE_PATH)/prebuilt/dtb.img        
-
+TARGET_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img     
+TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
 # Configurações do kernel e Device Tree
 BOARD_INCLUDE_RECOVERY_DTBO := true                                # Incluir o DTBO no boot image se necessário
 BOARD_KERNEL_SEPARATED_DTBO := true                               # DTBO é separado do kernel
