@@ -76,7 +76,6 @@ TW_NO_REBOOT_BOOTLOADER := true
 TW_HAS_DOWNLOAD_MODE := true
 TW_INCLUDE_NTFS_3G := true
 TW_EXTRA_LANGUAGES := true
-TW_USE_NEW_MINADBD := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_EXCLUDE_APEX := true
 TW_USE_TOOLBOX := true
@@ -99,18 +98,20 @@ TW_USE_NEW_MINADBD := true
 TWRP_EVENT_LOGGING := true
 
 # Kernel
+# Kernel Configuration
 TARGET_KERNEL_ARCH := arm64
 TARGET_FORCE_PREBUILT_KERNEL := true
 
 ifeq ($(TARGET_FORCE_PREBUILT_KERNEL), true)
-    TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image
-    TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
-    BOARD_INCLUDE_RECOVERY_DTBO := false
-    BOARD_INCLUDE_DTB_IN_BOOTIMG := true
-    BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
-    BOARD_KERNEL_SEPARATED_DTBO := true
-    BOARD_KERNEL_IMAGE_NAME := Image
+    TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image          # Caminho para o arquivo puro do kernel (Image)
+    TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img           # Caminho para o arquivo dtb.img
+    BOARD_INCLUDE_RECOVERY_DTBO := true                              # Incluir o DTBO no boot image se necessário
+    BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img     # Caminho para o arquivo dtbo.img
+    BOARD_KERNEL_SEPARATED_DTBO := true                              # DTBO é separado do kernel
+    BOARD_KERNEL_IMAGE_NAME := Image                                 # Nome do arquivo puro de imagem do kernel
+    BOARD_INCLUDE_DTB_IN_BOOTIMG := true                             # Incluir o DTB no boot image
 endif
+
 
 # Hack: prevent anti rollback
 PLATFORM_SECURITY_PATCH := 2099-12-31
