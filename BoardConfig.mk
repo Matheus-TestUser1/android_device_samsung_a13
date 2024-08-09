@@ -105,7 +105,7 @@ TARGET_FORCE_PREBUILT_KERNEL := true
 ifeq ($(TARGET_FORCE_PREBUILT_KERNEL), true)
     TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image          # Caminho para o arquivo puro do kernel (Image)
     TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img           # Caminho para o arquivo dtb.img
-    BOARD_INCLUDE_RECOVERY_DTBO := true                              # Incluir o DTBO no boot image se necessário
+    BOARD_INCLUDE_RECOVERY_DTBO := false                            # Incluir o DTBO no boot image se necessário
     BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img     # Caminho para o arquivo dtbo.img
     BOARD_KERNEL_SEPARATED_DTBO := true                              # DTBO é separado do kernel
     BOARD_KERNEL_IMAGE_NAME := Image                                 # Nome do arquivo puro de imagem do kernel
