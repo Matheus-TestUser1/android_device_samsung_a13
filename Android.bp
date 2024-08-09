@@ -6,3 +6,9 @@
 
 soong_namespace {
 }
+
+prebuilt_binary {
+    name: "dtb",
+    src: "prebuilt/dtb.img",
+    recovery: true,
+}
