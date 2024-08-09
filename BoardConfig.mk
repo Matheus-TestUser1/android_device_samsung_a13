@@ -101,9 +101,9 @@ TARGET_FORCE_PREBUILT_KERNEL := true
 
 ifeq ($(TARGET_FORCE_PREBUILT_KERNEL), true)
     TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image          
-    TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img          
-    BOARD_INCLUDE_RECOVERY_DTBO := true                            
-    BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img     # Caminho para o arquivo dtbo.img
+    BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
+    BOARD_PREBUILT_DTBIMAGE_DIR := $(DEVICE_PATH)/prebuilt/dtb.img         
+    BOARD_INCLUDE_RECOVERY_DTBO := true                                # Caminho para o arquivo dtbo.img
     BOARD_KERNEL_SEPARATED_DTBO := true                              # DTBO é separado do kernel
     BOARD_KERNEL_IMAGE_NAME := Image                                 # Nome do arquivo puro de imagem do kernel
     BOARD_INCLUDE_DTB_IN_BOOTIMG := true                             # Incluir o DTB no boot image
@@ -132,7 +132,6 @@ TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 BOARD_BOOT_HEADER_VERSION := 2
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_CMDLINE := androidboot.hardware=exynos850 androidboot.selinux=permissive loop.max_part=7
-BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_OFFSET := 0x00008000
 BOARD_RAMDISK_OFFSET := 0x01000000
