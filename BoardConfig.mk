@@ -94,7 +94,6 @@ TWRP_INCLUDE_LOGCAT := true
 TW_INCLUDE_FB2PNG := true
 TW_USE_RESTORE_STOCK_RECOVERY := true
 TW_USE_NEW_MINADBD := true
-TW_USE_RECOVERY_SDCARD := false
 TWRP_EVENT_LOGGING := true
 
 # Kernel
@@ -126,7 +125,7 @@ BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
 
 # System as root
 BOARD_ROOT_EXTRA_FOLDERS := cache carrier data_mirror efs keyrefuge linkerconfig metadata omr optics prism spu
-BOARD_SUPPRESS_SECURE_ERASE := true
+
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # Boot
