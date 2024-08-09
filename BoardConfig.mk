@@ -22,9 +22,6 @@ TARGET_CPU_SMP := true
 ENABLE_CPUSETS := true
 ENABLE_SCHEDBOOST := true
 
-# For building with minimal manifest
-ALLOW_MISSING_DEPENDENCIES := true
-
 # Display
 TARGET_SCREEN_DENSITY := 450
 
