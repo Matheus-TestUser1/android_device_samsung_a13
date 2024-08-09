@@ -9,35 +9,14 @@ TARGET_BOOTLOADER_BOARD_NAME := exynos850
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 TARGET_USES_UEFI := true
-# function choose 64 bit or 32 bit.
-TARGET_BUILD_64BIT := false
 
-ifeq ($(TARGET_BUILD_64BIT), true)
-    # Build 64-bit TWRP
-    TARGET_ARCH := arm64 
-    TARGET_ARCH_VARIANT := armv8-a
-    TARGET_CPU_ABI := arm64-v8a
-    TARGET_CPU_ABI2 :=
-    TARGET_CPU_VARIANT := cortex-a55
-    TARGET_CPU_VARIANT_RUNTIME := cortex-a55
-
-    TARGET_2ND_ARCH := arm
-    TARGET_2ND_ARCH_VARIANT := armv8-a
-    TARGET_2ND_CPU_ABI := armeabi-v7a
-    TARGET_2ND_CPU_ABI2 := armeabi
-    TARGET_2ND_CPU_VARIANT := cortex-a55
-    TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a55
-else
-    # Build 32-bit TWRP
-    # Target Architecture
+# Architecture
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := cortex-a53
-TARGET_CPU_VARIANT_RUNTIME := cortex-a53
 
-endif
 TARGET_CPU_SMP := true
 
 ENABLE_CPUSETS := true
@@ -139,7 +118,6 @@ PLATFORM_VERSION := 16.1.0
 
 # Verified Boot & 
 BOARD_AVB_ENABLE := true
-BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --set_hashtree_disabled_flag
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
 BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
 BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
