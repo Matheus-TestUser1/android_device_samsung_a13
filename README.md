@@ -4,11 +4,7 @@
 ## Disclaimer
 **Warning: Flashing custom recoveries can potentially brick your device. Proceed at your own risk. I am not responsible for any damage or data loss caused to your device.**
 
-## Kernel Source
-Available [here](https://github.com/VThang51/android_kernel_samsung_a13xx).
-
-## Platform Source
-Available [here](https://github.com/VThang51/android_platform_samsung_a13).
+**compiled for android 13 and 14.**
 
 ## How To Build
 1. Create a working directory at `~`:
