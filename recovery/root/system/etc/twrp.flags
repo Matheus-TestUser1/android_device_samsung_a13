@@ -24,7 +24,7 @@ system_dlkm    /system_dlkm  f2fs     ro    wait,avb,logical,first_stage_mount
 /recovery        emmc    /dev/block/by-name/recovery       flags=backup=1
 /prism_image     emmc    /dev/block/by-name/prism          flags=backup=1;flashimg;display="Prism Image"
 /optics_image    emmc    /dev/block/by-name/optics         flags=backup=1;flashimg;display="Optics Image"
-/data            f2fs    /dev/block/by-name/userdata       flags=encryptable=footer;length=-20480
+/data            f2fs    /dev/block/by-name/userdata       flags=encryptable=footer;length=-20480,wipeingui
 /prism           ext4    /dev/block/by-name/prism          flags=backup=0;wipeingui;display="Prism"
 /optics          ext4    /dev/block/by-name/optics         flags=backup=0;wipeingui;display="Optics"
 /dtbo            emmc    /dev/block/by-name/dtbo           flags=backup=1;display="DTBO"
