@@ -6,3 +6,7 @@
 
 soong_namespace {
 }
+cc_prebuilt_binary {
+    name: "kernel",
+    srcs: ["prebuilt/Image"],
+    installable: false,
