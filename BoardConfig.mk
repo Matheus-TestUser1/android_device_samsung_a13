@@ -93,17 +93,20 @@ TW_HAS_DOWNLOAD_MODE := true
 TW_USE_RESTORE_STOCK_RECOVERY := true
 TWRP_EVENT_LOGGING := true
 
+
 # Kernel
+TARGET_KERNEL_ARCH := arm64
 TARGET_FORCE_PREBUILT_KERNEL := true
 
-# Caminhos para arquivos preexistentes
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image          
-BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img     
-BOARD_PREBUILT_DTBIMAGE_DIR := $(DEVICE_PATH)/prebuilt/dtb
-# Configurações do kernel e Device Tree
-BOARD_INCLUDE_RECOVERY_DTBO := false                               # Incluir o DTBO no boot image se necessário
-BOARD_KERNEL_SEPARATED_DTBO := true                               # DTBO é separado do kernel
-BOARD_KERNEL_IMAGE_NAME := Image                                 # 
+ifeq ($(TARGET_FORCE_PREBUILT_KERNEL), true)
+    TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image
+    TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
+    BOARD_INCLUDE_RECOVERY_DTBO := false
+    BOARD_INCLUDE_DTB_IN_BOOTIMG := true
+    BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
+    BOARD_KERNEL_SEPARATED_DTBO := true
+    BOARD_KERNEL_IMAGE_NAME := Image
+endif                              
 
 
 # Hack: prevent anti rollback
