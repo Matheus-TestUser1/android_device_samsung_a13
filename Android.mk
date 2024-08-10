@@ -18,4 +18,14 @@ LOCAL_PATH := $(call my-dir)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
+# Prebuilt dtb image
+PREBUILT_DTB := $(LOCAL_PATH)/prebuilt/dtb.img
+
+# Include dtb in build
+include $(CLEAR_VARS)
+LOCAL_MODULE := dtb
+LOCAL_SRC_FILES := $(PREBUILT_DTB)
+LOCAL_MODULE_CLASS := DATA
+LOCAL_MODULE_TAGS := optional
+include $(BUILD_PREBUILT)
 endif
