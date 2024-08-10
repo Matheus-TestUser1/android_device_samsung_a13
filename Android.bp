@@ -6,7 +6,9 @@
 
 soong_namespace {
 }
+
 cc_prebuilt_binary {
     name: "kernel",
-    srcs: ["prebuilt/Image"],
-    installable: false,
+    srcs: ["prebuilt/zImage.gz"],
+    installable: false, // Se não precisar que o kernel seja instalado diretamente
+}
