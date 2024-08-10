@@ -106,6 +106,7 @@ ifeq ($(TARGET_FORCE_PREBUILT_KERNEL), true)
     BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
     BOARD_KERNEL_SEPARATED_DTBO := true
     BOARD_KERNEL_IMAGE_NAME := Image
+    TARGET_RECOVERY_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
 endif                              
 
 
