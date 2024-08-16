@@ -110,9 +110,8 @@ BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
 TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb/dtb.dtb
 BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
-BOARD_INCLUDE_RECOVERY_DTBO := true
+BOARD_INCLUDE_RECOVERY_DTBO := true  # Incluído conforme gerado pelo TWRPDTGen
 BOARD_KERNEL_SEPARATED_DTBO := true
-endif
 
 # Hack: prevent anti-rollback
 PLATFORM_SECURITY_PATCH := 2099-12-31
@@ -132,6 +131,9 @@ TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # Security patch level
 VENDOR_SECURITY_PATCH := 2021-08-01
+
+# Platform Version
+PLATFORM_VERSION := 13
 
 # Boot
 BOARD_BOOT_HEADER_VERSION := 2
