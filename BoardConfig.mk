@@ -39,6 +39,8 @@ ENABLE_SCHEDBOOST := true
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
 
+AB_OTA_UPDATER := false
+
 # Display
 TARGET_SCREEN_DENSITY := 450
 TARGET_SCREEN_WIDTH := 1080
