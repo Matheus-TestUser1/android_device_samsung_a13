@@ -85,8 +85,7 @@ TW_NO_REBOOT_RECOVERY := false  # Garante que a opção de reiniciar na recupera
 TW_NO_REBOOT_SYSTEM := false  # Habilita a opção de reiniciar no sistema
 TW_HAS_DOWNLOAD_MODE := true
 TW_INCLUDE_NTFS_3G := true
-TW_REBOOT_SHELL := true  # Habilita a reinicialização em um shell ADB
-
+TW_NO_SCREEN_BLANK := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_EXCLUDE_APEX := true
 TW_USE_TOOLBOX := true
