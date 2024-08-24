@@ -1,4 +1,4 @@
-# Device and Platform Configuration
+# Platform
 DEVICE_CODENAME := a13
 DEVICE_PATH := device/samsung/$(DEVICE_CODENAME)
 BOARD_VENDOR := samsung
@@ -80,12 +80,11 @@ TARGET_RECOVERY_PIXEL_FORMAT := "ABGR_8888"
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel/brightness"
 TW_MAX_BRIGHTNESS := 306
 TW_DEFAULT_BRIGHTNESS := 128
-TW_NO_REBOOT_BOOTLOADER := false  # Habilita a opção de reiniciar no bootloader
-TW_NO_REBOOT_RECOVERY := false  # Garante que a opção de reiniciar na recuperação esteja habilitada
-TW_NO_REBOOT_SYSTEM := false  # Habilita a opção de reiniciar no sistema
+TW_NO_REBOOT_BOOTLOADER := true
 TW_HAS_DOWNLOAD_MODE := true
 TW_INCLUDE_NTFS_3G := true
 TW_NO_SCREEN_BLANK := true
+
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_EXCLUDE_APEX := true
 TW_USE_TOOLBOX := true
@@ -146,7 +145,7 @@ BOARD_RAMDISK_OFFSET := 0x01000000
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 
 BOARD_MKBOOTIMG_ARGS := --kernel_offset $(BOARD_KERNEL_OFFSET)
-BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET) 
 BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_MKBOOTIMG_ARGS += --pagesize $(BOARD_KERNEL_PAGESIZE)
