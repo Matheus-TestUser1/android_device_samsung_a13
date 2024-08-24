@@ -8,9 +8,6 @@ system         /system       erofs    ro    avb=vbmeta,logical,first_stage_mount
 vendor         /vendor       f2fs     ro    avb,logical,first_stage_mount
 product        /product      f2fs     ro    avb,logical,first_stage_mount
 odm            /odm          f2fs     ro    avb,logical,first_stage_mount
-system_ext     /system_ext   f2fs     ro    wait,avb=vbmeta,logical,first_stage_mount
-vendor_dlkm    /vendor_dlkm  f2fs     ro    wait,avb=vbmeta,logical,first_stage_mount
-system_dlkm    /system_dlkm  f2fs     ro    wait,avb,logical,first_stage_mount
 
 # Linked partitions
 /system_image     emmc    /dev/block/by-name/system     flags=backup=0;flashimg;display="System Image"
