@@ -40,6 +40,6 @@ odm            /odm          f2fs     ro    avb,logical,first_stage_mount
 /usb-otg        auto    /dev/block/sda1         /dev/block/sda         flags=display="USB-OTG";storage;wipeingui;removable
 
 # Uncommented entries
-#/sdcard             sdfat     /dev/block/mmcblk0p1                  flags=display=sdcard
+/sdcard             sdfat     /dev/block/mmcblk0p1                  flags=display=sdcard
 #/carrier            ext4      /dev/block/by-name/carrier            flags=display=carrier
 #/preload            ext4      /dev/block/by-name/hidden             flags=display=preload
