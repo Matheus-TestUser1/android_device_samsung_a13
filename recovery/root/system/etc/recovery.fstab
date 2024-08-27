@@ -32,6 +32,7 @@ system    /system       erofs   ro    avb=vbmeta,logical,first_stage_mount
 vendor    /vendor       f2fs    ro    avb,logical,first_stage_mount
 product   /product      f2fs    ro    avb,logical,first_stage_mount
 odm       /odm          f2fs    ro    avb,logical,first_stage_mount
+
 /dev/block/by-name/boot        /boot           emmc        defaults                  recoveryonly
 /dev/block/by-name/recovery    /recovery       emmc        defaults                  recoveryonly
 /dev/block/by-name/metadata    /metadata       ext4        defaults                  wait,first_stage_mount
@@ -58,9 +59,9 @@ odm       /odm          f2fs    ro    avb,logical,first_stage_mount
 /dev/block/by-name/vbmeta_system    /vbmeta_system    emmc   default                recoveryonly
 /dev/block/by-name/vendor_boot      /vendor_boot      emmc   default                recoveryonly
 /dev/block/by-name/vbmeta_samsung   /vbmeta_samsung   emmc   default                recoveryonly
-system_ext                      /system_ext     f2fs    ro    wait,avb=vbmeta,logical,first_stage_mount
-vendor_dlkm                     /vendor_dlkm    f2fs    ro    wait,avb=vbmeta,logical,first_stage_mount
-system_dlkm                     /system_dlkm    f2fs    ro    wait,avb,logical,first_stage_mount
+#system_ext                      /system_ext     f2fs    ro    wait,avb=vbmeta,logical,first_stage_mount
+#vendor_dlkm                     /vendor_dlkm    f2fs    ro    wait,avb=vbmeta,logical,first_stage_mount
+#system_dlkm                     /system_dlkm    f2fs    ro    wait,avb,logical,first_stage_mount
 /dev/block/by-name/init_boot    /init_boot      emmc    default    recoveryonly
 
 # Removable storage
