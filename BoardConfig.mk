@@ -138,7 +138,7 @@ PLATFORM_VERSION := 13
 # Boot
 BOARD_BOOT_HEADER_VERSION := 2
 BOARD_KERNEL_BASE := 0x10000000
-BOARD_KERNEL_CMDLINE := androidboot.hardware=exynos850 androidboot.selinux=permissive loop.max_part=7
+BOARD_KERNEL_CMDLINE := androidboot.hardware=exynos850 androidboot.selinux=permissive lpm=off loop.max_part=7
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_OFFSET := 0x00008000
 BOARD_RAMDISK_OFFSET := 0x01000000
