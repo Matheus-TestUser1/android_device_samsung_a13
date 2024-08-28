@@ -2,44 +2,37 @@
 # mount point    fstype     device    device2    flags
 
 # Logical partitions
-system         /system       f2fs     ro    avb=vbmeta,logical,first_stage_mount
-system         /system       ext4     ro    avb=vbmeta,logical,first_stage_mount
-system         /system       erofs    ro    avb=vbmeta,logical,first_stage_mount
-vendor         /vendor       f2fs     ro    avb,logical,first_stage_mount
-product        /product      f2fs     ro    avb,logical,first_stage_mount
-odm            /odm          f2fs     ro    avb,logical,first_stage_mount
+/system         ext4    /dev/block/mapper/system        flags=display="System";backup=1;wipeingui
+/vendor         ext4    /dev/block/mapper/vendor        flags=display="Vendor";backup=1;wipeingui
+/product        ext4    /dev/block/mapper/product       flags=display="Product";backup=1;wipeingui
+/odm            ext4    /dev/block/mapper/odm           flags=display="ODM";backup=1;wipeingui
 
 # Linked partitions
-/system_image     emmc    /dev/block/by-name/system     flags=backup=0;flashimg;display="System Image"
-/vendor_image     emmc    /dev/block/by-name/vendor     flags=backup=0;flashimg;display="Vendor Image"
-/product_image    emmc    /dev/block/by-name/product    flags=backup=0;flashimg;display="Product Image"
-/odm_image        emmc    /dev/block/by-name/odm        flags=backup=0;flashimg;display="ODM Image"
+/system_image   emmc    /dev/block/by-name/system       flags=display="System Image";flashimg
+/vendor_image   emmc    /dev/block/by-name/vendor       flags=display="Vendor Image";flashimg
+/product_image  emmc    /dev/block/by-name/product      flags=display="Product Image";flashimg
+/odm_image      emmc    /dev/block/by-name/odm          flags=display="ODM Image";flashimg
 
 # Physical partitions
-/boot            emmc    /dev/block/by-name/boot
-/vendor_boot     emmc    /dev/block/by-name/vendor_boot    flags=backup=1;flashimg
-/recovery        emmc    /dev/block/by-name/recovery       flags=backup=1
-/prism_image     emmc    /dev/block/by-name/prism          flags=backup=1;flashimg;display="Prism Image"
-/optics_image    emmc    /dev/block/by-name/optics         flags=backup=1;flashimg;display="Optics Image"
-/data            f2fs    /dev/block/by-name/userdata       flags=encryptable=footer;length=-20480,wipeingui
-/prism           ext4    /dev/block/by-name/prism          flags=backup=0;wipeingui;display="Prism"
-/optics          ext4    /dev/block/by-name/optics         flags=backup=0;wipeingui;display="Optics"
-/dtbo            emmc    /dev/block/by-name/dtbo           flags=backup=1;display="DTBO"
-/efs             ext4    /dev/block/by-name/sec_efs        flags=backup=1;display="EFS"
-/sec_efs         ext4    /dev/block/by-name/sec_efs        flags=backup=1;display="Sec EFS"
-/modem           emmc    /dev/block/by-name/radio          flags=backup=1;display="Baseband"
-/cache           ext4    /dev/block/by-name/cache          flags=display="Cache"
-/misc            emmc    /dev/block/by-name/misc           flags=display="Misc"
-/metadata        ext4    /dev/block/by-name/metadata       flags=backup=1;display="Metadata"
-/vbmeta_system   emmc    /dev/block/by-name/vbmeta_system  flags=backup=1;display="Vbmeta System"
-/vbmeta_samsung  emmc    /dev/block/by-name/vbmeta_samsung flags=backup=1;display="Vbmeta Samsung"
-/init_boot       emmc    /dev/block/by-name/init_boot      flags=backup=1;display="Init Boot"
+/boot           emmc    /dev/block/by-name/boot         flags=display="Boot";backup=1;flashimg
+/vendor_boot    emmc    /dev/block/by-name/vendor_boot  flags=display="Vendor Boot";backup=1;flashimg
+/recovery       emmc    /dev/block/by-name/recovery     flags=display="Recovery";backup=1;flashimg
+/prism_image    emmc    /dev/block/by-name/prism        flags=display="Prism Image";backup=1;flashimg
+/optics_image   emmc    /dev/block/by-name/optics       flags=display="Optics Image";backup=1;flashimg
+/data           f2fs    /dev/block/by-name/userdata     flags=encryptable=footer;length=-20480,wipeingui
+/prism          ext4    /dev/block/by-name/prism        flags=backup=0;wipeingui;display="Prism"
+/optics         ext4    /dev/block/by-name/optics       flags=backup=0;wipeingui;display="Optics"
+/dtbo           emmc    /dev/block/by-name/dtbo         flags=backup=1;display="DTBO"
+/efs            ext4    /dev/block/by-name/sec_efs      flags=backup=1;display="EFS"
+/sec_efs        ext4    /dev/block/by-name/sec_efs      flags=backup=1;display="Sec EFS"
+/modem          emmc    /dev/block/by-name/radio        flags=backup=1;display="Baseband"
+/cache          ext4    /dev/block/by-name/cache        flags=display="Cache";wipeingui
+/misc           emmc    /dev/block/by-name/misc         flags=display="Misc"
+/metadata       ext4    /dev/block/by-name/metadata     flags=backup=1;display="Metadata"
+/vbmeta_system  emmc    /dev/block/by-name/vbmeta_system  flags=backup=1;display="Vbmeta System"
+/vbmeta_samsung emmc    /dev/block/by-name/vbmeta_samsung flags=backup=1;display="Vbmeta Samsung"
+/init_boot      emmc    /dev/block/by-name/init_boot    flags=backup=1;display="Init Boot"
 
 # Removable partitions
-/external_sd    vfat    /dev/block/mmcblk1p1    /dev/block/mmcblk1     flags=display="Micro SDcard";storage;wipeingui;removable
-/usb-otg        auto    /dev/block/sda1         /dev/block/sda         flags=display="USB-OTG";storage;wipeingui;removable
-
-# Uncommented entries
-/sdcard             sdfat     /dev/block/mmcblk0p1                  flags=display=sdcard
-#/carrier            ext4      /dev/block/by-name/carrier            flags=display=carrier
-#/preload            ext4      /dev/block/by-name/hidden             flags=display=preload
+/external_sd    vfat    /dev/block/mmcblk1p1    /dev/block/mmcblk1     flags=display="Micro SD Card";storage;wipeingui;removable
+/usb-otg        auto    /dev/block/sda1         /dev/block/sda         flags=display="USB OTG";storage;wipeingui;removable
