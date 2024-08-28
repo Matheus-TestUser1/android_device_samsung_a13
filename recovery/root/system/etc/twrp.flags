@@ -8,10 +8,10 @@
 /odm            ext4    /dev/block/mapper/odm           flags=display="ODM";backup=1;wipeingui
 
 # Linked partitions
-/system_image   emmc    /dev/block/by-name/system       flags=display="System Image";flashimg
-/vendor_image   emmc    /dev/block/by-name/vendor       flags=display="Vendor Image";flashimg
-/product_image  emmc    /dev/block/by-name/product      flags=display="Product Image";flashimg
-/odm_image      emmc    /dev/block/by-name/odm          flags=display="ODM Image";flashimg
+/system_image   emmc    /dev/block/mapper/system       flags=display="System Image";flashimg
+/vendor_image   emmc    /dev/block/mapper/vendor       flags=display="Vendor Image";flashimg
+/product_image  emmc    /dev/block/mapper/product      flags=display="Product Image";flashimg
+/odm_image      emmc    /dev/block/mapper/odm          flags=display="ODM Image";flashimg
 
 # Physical partitions
 /boot           emmc    /dev/block/by-name/boot         flags=display="Boot";backup=1;flashimg
