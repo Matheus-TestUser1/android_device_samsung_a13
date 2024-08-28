@@ -29,6 +29,7 @@
 /cache          ext4    /dev/block/by-name/cache        flags=display="Cache";wipeingui
 /misc           emmc    /dev/block/by-name/misc         flags=display="Misc"
 /metadata       ext4    /dev/block/by-name/metadata     flags=backup=1;display="Metadata"
+/vbmeta        emmc      /dev/block/by-name/vbmeta        flags=display=vbmeta;backup=1;flashimg
 /vbmeta_system  emmc    /dev/block/by-name/vbmeta_system  flags=backup=1;display="Vbmeta System"
 /vbmeta_samsung emmc    /dev/block/by-name/vbmeta_samsung flags=backup=1;display="Vbmeta Samsung"
 /init_boot      emmc    /dev/block/by-name/init_boot    flags=backup=1;display="Init Boot"
