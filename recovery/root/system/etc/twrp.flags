@@ -1,39 +1,32 @@
-# Android fstab file.
-# mount point    fstype     device    device2    flags
-
-# Logical partitions
+# Logical partitions (Mapper-based)
 /system         ext4    /dev/block/mapper/system        flags=display="System";backup=1;wipeingui
 /vendor         ext4    /dev/block/mapper/vendor        flags=display="Vendor";backup=1;wipeingui
 /product        ext4    /dev/block/mapper/product       flags=display="Product";backup=1;wipeingui
 /odm            ext4    /dev/block/mapper/odm           flags=display="ODM";backup=1;wipeingui
 
-# Linked partitions
-/system_image   emmc    /dev/block/mapper/system       flags=display="System Image";flashimg
-/vendor_image   emmc    /dev/block/mapper/vendor       flags=display="Vendor Image";flashimg
-/product_image  emmc    /dev/block/mapper/product      flags=display="Product Image";flashimg
-/odm_image      emmc    /dev/block/mapper/odm          flags=display="ODM Image";flashimg
+# Image partitions (Flash via fastboot)
+/system_image   emmc    /dev/block/by-name/system       flags=display="System Image";flashimg
+/vendor_image   emmc    /dev/block/by-name/vendor       flags=display="Vendor Image";flashimg
+/product_image  emmc    /dev/block/by-name/product      flags=display="Product Image";flashimg
+/odm_image      emmc    /dev/block/by-name/odm          flags=display="ODM Image";flashimg
 
-# Physical partitions
+# Physical partitions (Critical for boot and recovery)
 /boot           emmc    /dev/block/by-name/boot         flags=display="Boot";backup=1;flashimg
 /vendor_boot    emmc    /dev/block/by-name/vendor_boot  flags=display="Vendor Boot";backup=1;flashimg
 /recovery       emmc    /dev/block/by-name/recovery     flags=display="Recovery";backup=1;flashimg
-/prism_image    emmc    /dev/block/by-name/prism        flags=display="Prism Image";backup=1;flashimg
-/optics_image   emmc    /dev/block/by-name/optics       flags=display="Optics Image";backup=1;flashimg
-/data           f2fs    /dev/block/by-name/userdata     flags=encryptable=footer;length=-20480,wipeingui
-/prism          ext4    /dev/block/by-name/prism        flags=backup=0;wipeingui;display="Prism"
-/optics         ext4    /dev/block/by-name/optics       flags=backup=0;wipeingui;display="Optics"
+/data           f2fs    /dev/block/by-name/userdata     flags=encryptable=footer;length=-20480;wipeingui
+
+# Specific partitions (Related to security, modem, etc.)
+/vbmeta         emmc    /dev/block/by-name/vbmeta       flags=display="Vbmeta";backup=1;flashimg
+/vbmeta_system  emmc    /dev/block/by-name/vbmeta_system flags=display="Vbmeta System";backup=1;flashimg
+/init_boot      emmc    /dev/block/by-name/init_boot    flags=display="Init Boot";backup=1;flashimg
+/modem          emmc    /dev/block/by-name/radio        flags=display="Baseband";backup=1
+
+# Additional partitions
 /dtbo           emmc    /dev/block/by-name/dtbo         flags=backup=1;display="DTBO"
 /efs            ext4    /dev/block/by-name/sec_efs      flags=backup=1;display="EFS"
-/sec_efs        ext4    /dev/block/by-name/sec_efs      flags=backup=1;display="Sec EFS"
-/modem          emmc    /dev/block/by-name/radio        flags=backup=1;display="Baseband"
 /cache          ext4    /dev/block/by-name/cache        flags=display="Cache";wipeingui
-/misc           emmc    /dev/block/by-name/misc         flags=display="Misc"
-/metadata       ext4    /dev/block/by-name/metadata     flags=backup=1;display="Metadata"
-/vbmeta        emmc      /dev/block/by-name/vbmeta        flags=display=vbmeta;backup=1;flashimg
-/vbmeta_system  emmc    /dev/block/by-name/vbmeta_system  flags=backup=1;display="Vbmeta System"
-/vbmeta_samsung emmc    /dev/block/by-name/vbmeta_samsung flags=backup=1;display="Vbmeta Samsung"
-/init_boot      emmc    /dev/block/by-name/init_boot    flags=backup=1;display="Init Boot"
 
-# Removable partitions
-/external_sd    vfat    /dev/block/mmcblk1p1    /dev/block/mmcblk1     flags=display="Micro SD Card";storage;wipeingui;removable
-/usb-otg        auto    /dev/block/sda1         /dev/block/sda         flags=display="USB OTG";storage;wipeingui;removable
+# Removable storage
+/external_sd    vfat    /dev/block/mmcblk1p1            flags=display="Micro SD Card";storage;removable
+/usb-otg        auto    /dev/block/sda1                 flags=display="USB OTG";storage;removable
