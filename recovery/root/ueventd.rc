@@ -20,9 +20,6 @@ subsystem sound
     devname uevent_devpath
     dirname /dev/snd
 
-subsystem dma_heap
-   devname uevent_devpath
-   dirname /dev/dma_heap
 # ueventd can only set permissions on device nodes and their associated
 # sysfs attributes, not on arbitrary paths.
 #
@@ -42,20 +39,10 @@ subsystem dma_heap
 /dev/hwbinder             0666   root       root
 /dev/vndbinder            0666   root       root
 
-/dev/pmsg0                0222   root       log
-/dev/dma_heap/system      0444   system     system
-/dev/dma_heap/system-uncached      0444   system     system
-/dev/dma_heap/system-secure        0444   system     system
-
 # kms driver for drm based gpu
 /dev/dri/*                0666   root       graphics
 
 # these should not be world writable
-/dev/uhid                 0660   uhid       uhid
-/dev/uinput               0660   uhid       uhid
-/dev/rtc0                 0640   system     system
-/dev/tty0                 0660   root       system
-/dev/ttySAC0              0660   root       radio
 /dev/graphics/*           0660   root       graphics
 /dev/input/*              0660   root       input
 /dev/v4l-touch*           0660   root       input
@@ -64,25 +51,12 @@ subsystem dma_heap
 /dev/mtp_usb              0660   root       mtp
 /dev/usb_accessory        0660   root       usb
 /dev/tun                  0660   system     vpn
-/dev/power_on_alarm       0220   system     radio
-
-# CDMA radio interface MUX
-/dev/ppp                  0660   radio      vpn
-
-/dev/kvm                  0600   system     system
-/dev/vhost-vsock          0600   system	    system
 
 # sysfs properties
-/sys/devices/platform/trusty.*      trusty_version        0440  root   log
 /dev/input/event* 0660 system input
 /sys/devices/virtual/input/input*   enable      0660  root   input
 /sys/devices/virtual/input/input*   enable2      0660  root   input
 /sys/devices/virtual/input/input*   poll_delay  0660  root   input
-/sys/devices/virtual/usb_composite/*   enable      0664  root   system
-/sys/devices/system/cpu/cpu*   cpufreq/scaling_max_freq   0664  system system
-/sys/devices/system/cpu/cpu*   cpufreq/scaling_min_freq   0664  system system
-/sys/devices/virtual/misc/uhid/*/leds/* brightness   0664  system system
-/sys/devices/virtual/misc/uhid/*/leds/* multi_intensity   0664  system system
 /sys/class/sec/tsp/cmd 0660 system radio
 /sys/class/sec/tsp1/cmd 0660 system radio
 /sys/class/sec/tsp2/cmd 0660 system radio
@@ -93,9 +67,6 @@ subsystem dma_heap
 
 # Big Hammer
 /dev/wbrc        0660 bluetooth bluetooth
-
-# CNSS
-/sys/class/devcoredump/devcd*    data    0660    wifi     system
 
 # parallel_restorecon_dir
 # Never include the "/sys/devices/platform/soc/1d84000.ufshc" path
