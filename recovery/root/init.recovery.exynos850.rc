@@ -9,6 +9,9 @@ on init
     write /proc/sys/kernel/hung_task_timeout_secs 0
     start watchdogd
 
+on early-init
+    write /sys/fs/selinux/enforce 0
+
     # unlink /efs > /mnt/vendor/efs
     rm /efs
     mkdir /efs
