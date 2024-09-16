@@ -4,24 +4,29 @@
 #
 # Use this to prime your device after installing TWRP.
 
+set -e
+
+# Função para calcular o MD5
 md5() {
   md5sum -b "$1"
 }
 
+# Função para verificar se o arquivo foi alterado
 file_changed() {
   local file="$1"
   local old_md5="$2"
-  local new_md5=$( md5 "$file" )
+  local new_md5=$(md5 "$file")
 
-  if [ $new_md5 != $old_md5 ]; then
+  if [ "$new_md5" != "$old_md5" ]; then
     echo " -     ...modified."
   else
     echo " -     ...unchanged."
   fi
 }
 
+# Função para redimensionar a partição /vendor
 resize_vendor() {
-  local dm_block=$(df -k | cat | grep "/vendor" | cut -d' ' -f1)
+  local dm_block=$(df -k | grep "/vendor" | awk '{print $1}')
 
   echo " - Unmounting /vendor..."
   umount /vendor
@@ -36,6 +41,7 @@ resize_vendor() {
   mount -o remount,rw /vendor
 }
 
+# Função para verificar o espaço livre na partição /vendor
 vendor_free_size_check() {
   echo " - Checking vendor free size..."
   if dd if=/dev/zero of=/vendor/test bs=1 count=1 2>/dev/null; then
@@ -49,50 +55,41 @@ vendor_free_size_check() {
   fi
 }
 
+# Função para desativar a criptografia baseada em arquivos (FBE)
 disable_fbe() {
   local md5
   local i
-  fstab_files=`grep -lr 'fileencryption' vendor/etc`
+  fstab_files=$(grep -lr 'fileencryption' vendor/etc)
 
-  #
-  # Exynos devices = fstab.exynos*.
-  # MediaTek devices = fstab.mt*.
-  # Snapdragon devices = fstab.qcom, fstab.emmc, fstab.default
-  #
   for i in $fstab_files; do
     if [ -f $i ]; then
       echo " - Disabling file-based encryption (FBE) for /data..."
       echo " -   Found $i."
-      md5=$( md5 $i )
-      # This comments out the offending line and adds an edited one.
+      md5=$(md5 $i)
       sed -i -e 's/^\([^#].*\)fileencryption=[^,]*\(.*\)$/# &\n\1encryptable\2/g' $i
       file_changed $i $md5
     fi
   done
 }
 
+# Função para desativar a criptografia de disco completo (FDE)
 disable_fde() {
   local md5
   local i
-  fstab_files=`grep -lr 'forceencrypt' vendor/etc`
+  fstab_files=$(grep -lr 'forceencrypt' vendor/etc)
 
-  #
-  # Exynos devices = fstab.exynos*.
-  # MediaTek devices = fstab.mt*.
-  # Snapdragon devices = fstab.qcom, fstab.emmc, fstab.default
-  #
   for i in $fstab_files; do
     if [ -f $i ]; then
       echo " - Disabling full-disk encryption (FDE) for /data..."
       echo " -   Found $i."
-      md5=$( md5 $i )
-      # This comments out the offending line and adds an edited one.
+      md5=$(md5 $i)
       sed -i -e 's/^\([^#].*\)forceencrypt=[^,]*\(.*\)$/# &\n\1encryptable\2/g' $i
       file_changed $i $md5
     fi
   done
 }
 
+# Função para desativar a restauração de recuperação
 disable_recovery_restoration() {
   local r=recovery-from-boot.p
   local found
@@ -102,9 +99,9 @@ disable_recovery_restoration() {
 
   for i in $ANDROID_ROOT $ANDROID_ROOT/system /vendor; do
     if [ -f $i/$r~ ]; then
-	echo " -   ...already disabled."
-	found=true
-	break
+      echo " -   ...already disabled."
+      found=true
+      break
     fi
 
     if [ -f $i/$r ]; then
@@ -112,9 +109,9 @@ disable_recovery_restoration() {
       mv $i/$r $i/$r~
 
       if [ -f $i/$r~ ]; then
-	echo " -     ...succeeded."
+        echo " -     ...succeeded."
       else
-	echo " -     ...failed."
+        echo " -     ...failed."
       fi
 
       found=true
@@ -126,6 +123,18 @@ disable_recovery_restoration() {
   [ -z "$found" ] && echo " -   Found no stock recovery. Pfft."
 }
 
+# Desabilitar a restauração de recuperação e atualizar o boot.img
+echo "Disabling recovery restoration..."
+dd if=/dev/block/by-name/boot of=/tmp/old-boot.img
+mkdir -p /tmp/unpacked_boot
+cd /tmp/unpacked_boot
+magiskboot unpack -h /tmp/old-boot.img
+magiskboot repack /tmp/old-boot.img /tmp/new-boot.img
+cd -
+rm -rf /tmp/unpacked_boot
+dd if=/tmp/new-boot.img of=/dev/block/by-name/boot
+
+# Início do script principal
 echo " "
 echo "Multi-disabler v3.1 for Samsung devices"
 echo "running Android 9 or later."
@@ -137,13 +146,7 @@ major=${os%%.*}
 bl=$(getprop ro.boot.bootloader)
 dp=$(getprop ro.boot.dynamic_partitions)
 
-# Firmware version starts at either 8th or 9th character, depending on length
-# of bootloader string (12 or 13).
-#
 fw=${bl:$((${#bl} - 4)):4}
-
-# Device is first 5 characters of bootloader string.
-#
 device=${bl:0:$((${#bl} - 8))}
 mft=$(getprop ro.product.manufacturer | tr '[A-Z]' '[a-z]')
 
