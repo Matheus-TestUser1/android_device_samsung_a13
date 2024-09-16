@@ -35,5 +35,5 @@
 /init_boot      emmc    /dev/block/by-name/init_boot    flags=backup=1;display="Init Boot"
 
 # Removable partitions
-/external_sd vfat /dev/block/mmcblk1p1 flags=display="Micro SD Card"; storage; removable
-/usb-otg        auto    /dev/block/sda1         /dev/block/sda         flags=display="USB OTG";storage;wipeingui;removable
+/external_sd vfat /dev/block/mmcblk1p1 flags=display="Micro SD Card";storage;removable
+/usb-otg auto /dev/block/sda1 /dev/block/sda flags=display="USB OTG";storage;wipeingui;removable
