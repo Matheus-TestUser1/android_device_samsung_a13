@@ -33,9 +33,6 @@ vendor    /vendor       f2fs    ro    avb,logical,first_stage_mount
 product   /product      f2fs    ro    avb,logical,first_stage_mount
 odm       /odm          f2fs    ro    avb,logical,first_stage_mount
 
-# Super 
-super           emmc    /dev/block/by-name/super       flags=display="Super Image";backup=1;flashimg
-
 # Partições específicas
 system_image    emmc    /dev/block/by-name/system       flags=display="System Image";backup=1;flashimg
 vendor_image    emmc    /dev/block/by-name/vendor       flags=display="Vendor Image";backup=1;flashimg
