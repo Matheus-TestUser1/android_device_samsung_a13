@@ -1,4 +1,4 @@
-# Configuração inicial do USB usando ConfigFS
+# Configuração geral de USB usando configfs
 on fs && property:sys.usb.configfs=1
     mount configfs none /config
     mkdir /config/usb_gadget/g1 0770 shell shell
@@ -13,7 +13,7 @@ on fs && property:sys.usb.configfs=1
     mkdir /config/usb_gadget/g1/configs/b.1 0777 shell shell
     mkdir /config/usb_gadget/g1/configs/b.1/strings/0x409 0770 shell shell
 
-# Configuração inicial do USB sem ConfigFS
+# Configuração geral de USB sem usar configfs
 on fs && property:sys.usb.configfs=0
     write /sys/class/android_usb/android0/f_ffs/aliases adb,fastboot
     write /sys/class/android_usb/android0/idVendor 18D1
@@ -21,7 +21,7 @@ on fs && property:sys.usb.configfs=0
     write /sys/class/android_usb/android0/iProduct ${ro.product.model}
     write /sys/class/android_usb/android0/iSerial ${ro.serialno}
 
-# Montagem do pstore e preparação das pastas
+# Configuração de USB
 on fs
     mount pstore pstore /sys/fs/pstore
     mkdir /dev/usb-ffs 0770 shell shell
@@ -32,45 +32,40 @@ on fs
     mount functionfs fastboot /dev/usb-ffs/fastboot rmode=0770,fmode=0660,uid=1000,gid=1000
     mount functionfs mtp /dev/usb-ffs/mtp uid=2000,gid=2000
 
-# Inicialização do adbd para diferentes configurações
+# Modo ADB
 on property:sys.usb.config=adb
     start adbd
 
+# Modo MTP + ADB
 on property:sys.usb.config=mtp,adb
     start adbd
 
+# Modo Fastboot
 on property:sys.usb.config=fastboot
     start fastbootd
 
-# Desativação do USB e redefinição de estados
+# Modo None com configfs desabilitado
 on property:sys.usb.config=none && property:sys.usb.configfs=0
     stop adbd
     stop fastboot
     write /sys/class/android_usb/android0/enable 0
     setprop sys.usb.state ${sys.usb.config}
 
-# Configuração de ADB para diferentes modos
+# Modo ADB com configfs desabilitado
 on property:sys.usb.config=adb && property:sys.usb.configfs=0
     write /sys/class/android_usb/android0/idProduct D001
     write /sys/class/android_usb/android0/functions adb
     write /sys/class/android_usb/android0/enable 1
     setprop sys.usb.state ${sys.usb.config}
 
-# Configuração de Sideload
-on property:sys.usb.config=sideload && property:sys.usb.configfs=0
-    write /sys/class/android_usb/android0/idProduct D001
-    write /sys/class/android_usb/android0/functions adb
-    write /sys/class/android_usb/android0/enable 1
-    setprop sys.usb.state ${sys.usb.config}
-
-# Configuração de Fastboot
+# Modo Fastboot com configfs desabilitado
 on property:sys.usb.config=fastboot && property:sys.usb.configfs=0
     write /sys/class/android_usb/android0/idProduct 4EE0
     write /sys/class/android_usb/android0/functions fastboot
     write /sys/class/android_usb/android0/enable 1
     setprop sys.usb.state ${sys.usb.config}
 
-# Triggers para ConfigFS
+# Modo None com configfs habilitado
 on property:sys.usb.config=none && property:sys.usb.configfs=1
     write /config/usb_gadget/g1/UDC "none"
     stop adbd
@@ -79,15 +74,7 @@ on property:sys.usb.config=none && property:sys.usb.configfs=1
     rm /config/usb_gadget/g1/configs/b.1/f1
     setprop sys.usb.state ${sys.usb.config}
 
-# Configurações de ADB e Fastboot com ConfigFS
-on property:sys.usb.config=sideload && property:sys.usb.ffs.ready=1 && property:sys.usb.configfs=1
-    write /config/usb_gadget/g1/idProduct 0xD001
-    write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "adb"
-    symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f1
-    write /config/usb_gadget/g1/UDC ${sys.usb.controller}
-    setprop sys.usb.state ${sys.usb.config}
-
-# Modo ADB e MTP
+# Modo ADB com configfs habilitado
 on property:sys.usb.config=adb && property:sys.usb.ffs.ready=1 && property:sys.usb.configfs=1
     write /config/usb_gadget/g1/idProduct 0xD001
     write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "adb"
@@ -95,6 +82,7 @@ on property:sys.usb.config=adb && property:sys.usb.ffs.ready=1 && property:sys.u
     write /config/usb_gadget/g1/UDC ${sys.usb.controller}
     setprop sys.usb.state ${sys.usb.config}
 
+# Modo MTP + ADB com configfs habilitado
 on property:sys.usb.config=mtp,adb && property:sys.usb.ffs.ready=1 && property:sys.usb.configfs=1
     write /config/usb_gadget/g1/idProduct 0x6860
     write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "mtp,adb"
@@ -103,9 +91,37 @@ on property:sys.usb.config=mtp,adb && property:sys.usb.ffs.ready=1 && property:s
     write /config/usb_gadget/g1/UDC ${sys.usb.controller}
     setprop sys.usb.state ${sys.usb.config}
 
+# Modo Fastboot com configfs habilitado
 on property:sys.usb.config=fastboot && property:sys.usb.ffs.ready=1 && property:sys.usb.configfs=1
     write /config/usb_gadget/g1/idProduct 0x4EE0
     write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "fastboot"
     symlink /config/usb_gadget/g1/functions/ffs.fastboot /config/usb_gadget/g1/configs/b.1/f1
     write /config/usb_gadget/g1/UDC ${sys.usb.controller}
+    setprop sys.usb.state ${sys.usb.config}
+
+# ** Novo bloco de código para o modo Sideload **
+
+# Modo Sideload com configfs habilitado
+on property:sys.usb.config=sideload && property:sys.usb.ffs.ready=1 && property:sys.usb.configfs=1
+    write /config/usb_gadget/g1/idProduct 0xD002
+    write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "sideload"
+    symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f1
+    write /config/usb_gadget/g1/UDC ${sys.usb.controller}
+    setprop sys.usb.state ${sys.usb.config}
+
+# Modo Sideload com configfs desabilitado
+on property:sys.usb.config=sideload && property:sys.usb.configfs=0
+    write /sys/class/android_usb/android0/idProduct D002
+    write /sys/class/android_usb/android0/functions adb,sideload
+    write /sys/class/android_usb/android0/enable 1
+    setprop sys.usb.state ${sys.usb.config}
+
+# Inicia o ADB no modo Sideload
+on property:sys.usb.config=sideload
+    start adbd
+
+# Finaliza o modo Sideload quando USB for setado como none
+on property:sys.usb.config=none && property:sys.usb.config=sideload
+    stop adbd
+    write /sys/class/android_usb/android0/enable 0
     setprop sys.usb.state ${sys.usb.config}
