@@ -57,7 +57,7 @@ Medium checks
 - [P] Correct date
 
 Minor checks
-- [ ] MTP export
+- [A] MTP export
 - [A] Reboot to bootloader
 - [A] Reboot to recovery
 - [A] Poweroff
